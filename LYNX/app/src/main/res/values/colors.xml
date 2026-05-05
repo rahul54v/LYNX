@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="obsidian">#0A0A0A</color>
+    <color name="emerald">#10B981</color>
+    <color name="emerald_dark">#059669</color>
+    <color name="emerald_light">#34D399</color>
+    <color name="surface_dark">#1A1A1A</color>
+    <color name="surface_card">#141414</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A1A1AA</color>
+    <color name="text_tertiary">#71717A</color>
+    <color name="income_green">#10B981</color>
+    <color name="expense_red">#EF4444</color>
+    <color name="purple_accent">#8B5CF6</color>
+    <color name="blue_accent">#3B82F6</color>
+    <color name="orange_accent">#F97316</color>
+    <color name="yellow_accent">#EAB308</color>
+    <color name="pink_accent">#EC4899</color>
+    <color name="cyan_accent">#06B6D4</color>
+</resources>
