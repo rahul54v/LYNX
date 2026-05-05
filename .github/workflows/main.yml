@@ -1,0 +1,46 @@
+name: Build LYNX APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Find Gradlew and Fix Path
+      run: |
+        GRADLEW_PATH=$(find . -name gradlew)
+        echo "Found gradlew at: $GRADLEW_PATH"
+        if [ -z "$GRADLEW_PATH" ]; then
+          echo "Error: gradlew not found anywhere!"
+          exit 1
+        fi
+        chmod +x $GRADLEW_PATH
+        # সঠিক ডাইরেক্টরি সেট করা
+        echo "DIR_PATH=$(dirname $GRADLEW_PATH)" >> $GITHUB_ENV
+        echo "GRADLEW_FINAL_PATH=$GRADLEW_PATH" >> $GITHUB_ENV
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Build with Gradle
+      run: |
+        cd ${{ env.DIR_PATH }}
+        ./gradlew assembleDebug --no-daemon
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: LYNX-App-Debug
+        path: "**/build/outputs/apk/debug/app-debug.apk"
+        
